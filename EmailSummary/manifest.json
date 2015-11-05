@@ -1,0 +1,11 @@
+{
+  "name" : "Email Summarizer",
+  "version" : "1",
+  "description" : "Emails a summary of the page to a recipient",
+  "permissions": [ "tabs" ],
+  "browser_action": {
+     "default_icon": "evelope.png",
+     "default_popup": "popup.html"
+  },
+  "manifest_version": 2
+}

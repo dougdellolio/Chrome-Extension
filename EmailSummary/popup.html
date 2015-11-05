@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Popup</title>
+    <style>
+      dt { white-space: nowrap }
+    </style>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <form>
+      Send To:<br>
+      <input type="text" name="sendto">
+      <br>
+      From:<br>
+      <input type="text" name="from">
+      <br>
+      Subject:<br>
+      <input type="text" name="subject">
+      <br>
+      Message:<br>
+      <input type="text" name="message">
+    </form>
+    <br>
+    <fieldset>
+      <dl>
+        <dt><label for="images">Images: </label></dt>
+        <dd><select id="images" disabled>
+          <option value="allow">Allow</option>
+          <option value="block">Block</option>
+        </select>
+      </dl>
+    </fieldset>
+  </body>
+</html>
