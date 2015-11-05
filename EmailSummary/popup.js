@@ -3,6 +3,11 @@
 // found in the LICENSE file.
 
 document.addEventListener('DOMContentLoaded', function () {
-
-  });
+	chrome.tabs.getSelected(null, function(tab) {
+	  //properties of tab object
+	  tabId = tab.id;
+	  tabUrl = tab.url;
+	  alert(tabUrl);
+	  //rest of the save functionality.
+	});
 });
