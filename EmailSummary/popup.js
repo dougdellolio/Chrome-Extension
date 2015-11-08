@@ -38,7 +38,3 @@ function retrieveTitle() {
 		httpRequest.send();
 	});
 }
-
-
-
-
