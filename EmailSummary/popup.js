@@ -29,8 +29,8 @@ function retrieveTitle() {
 				}
 
 				data = xmlDoc.getElementsByTagName('title');
-				imageData = xmlDoc.querySelector('img');
 				alert(data[0].innerHTML);
+				
 			}
 		  }
 
