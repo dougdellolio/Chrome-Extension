@@ -1,11 +1,18 @@
 {
-  "name" : "Email Summarizer",
-  "version" : "1",
-  "description" : "Emails a summary of the page to a recipient",
-  "permissions": [ "tabs" ],
+  "name": "Tab and Window Overview",
+  "version": "1",
+  "description": "Gives an overview of windows and tabs and allows you to save for later use.",
+  "permissions": [
+    "tabs", "activeTab"
+  ],
   "browser_action": {
-     "default_icon": "evelope.png",
-     "default_popup": "popup.html"
+      "default_title": "Tab Overview",
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
   },
-  "manifest_version": 2
+  "icons": { 
+      "64": "icon.png"
+  },
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'"
 }
