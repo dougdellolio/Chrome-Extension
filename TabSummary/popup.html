@@ -1,35 +1,16 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title>Popup</title>
-    <style>
-      dt { white-space: nowrap }
-    </style>
-    <script src="popup.js"></script>
-  </head>
-  <body>
-    <form>
-      Send To:<br>
-      <input type="text" name="sendto">
-      <br>
-      From:<br>
-      <input type="text" name="from">
-      <br>
-      Subject:<br>
-      <input type="text" name="subject">
-      <br>
-      Message:<br>
-      <input type="text" name="message">
-    </form>
-    <br>
-    <fieldset>
-      <dl>
-        <dt><label for="images">Images: </label></dt>
-        <dd><select id="images" disabled>
-          <option value="allow">Allow</option>
-          <option value="block">Block</option>
-        </select>
-      </dl>
-    </fieldset>
-  </body>
+	<head>
+		<link href="popup.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<link href="http://fonts.googleapis.com/css?family=Corben:bold" rel="stylesheet" type="text/css">
+ 		<link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
+		<script src="popup.js"></script>
+	</head>
+	<body style="width: 500px">
+	  <label>Windows</label>
+	  <div id="windows"></div>
+	  <hr>
+	  <label>Tabs</label>
+	  <div id="tabs"></div>
+	</body>
 </html>
