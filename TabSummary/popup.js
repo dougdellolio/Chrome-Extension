@@ -12,6 +12,19 @@ function sessionOverview() {
   setTimeout(function() { success.classList.add('visible'); }, 10);
 }
 
+/*function getAllWindows(callback) {
+	chrome.windows.getAll({populate: true}, function(windowList) {
+		var winCount = windowList.length;
+		var winList = [];
+		var tabList = [];
+		
+		for(var i = 0; i < windowList.length; i++) {
+			winList = winList.concat(windowList[i]);
+			tabList = tabList.concat(windowList[i].tabs);
+		}
+	});
+}*/
+
 //adds the window list to its div
 function addToWindowList(list){
   $('#windows').append("Number of Tabs Open: " + list.length);
