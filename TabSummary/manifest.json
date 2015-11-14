@@ -3,7 +3,8 @@
   "version": "1",
   "description": "Gives an overview of windows and tabs and allows you to save for later use.",
   "permissions": [
-    "tabs", "activeTab"
+    "tabs", 
+    "activeTab"
   ],
   "browser_action": {
       "default_title": "Tab Overview",
