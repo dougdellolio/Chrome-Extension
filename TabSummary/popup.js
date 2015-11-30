@@ -18,7 +18,7 @@ function addToWindowList(list){
   var text = "<ul type='circle'>";
 
   for (i = 0; i < list.length; i++) { 
-      text += "<li>" + "Session ID of Tab " + (i+1) + " = " + list[i].url + "</li>";
+      text += "<li>" + "URL of Tab " + (i+1) + " = " + list[i].url + "</li>";
   }
 
   $('#windows').append(text + "</ul>");
