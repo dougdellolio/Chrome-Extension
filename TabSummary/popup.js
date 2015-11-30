@@ -24,7 +24,12 @@ function addToWindowList(list){
   $('#windows').append(text + "</ul>");
 }
 
-
 document.addEventListener('DOMContentLoaded', function () {
   sessionOverview();
+  
+	var bt = document.getElementById('restoreSessionBt');
+  
+  bt.addEventListener('click', function() {
+  	chrome.sessions.restore(null,null);
+  });
 });
