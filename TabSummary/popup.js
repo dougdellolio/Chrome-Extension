@@ -42,7 +42,7 @@ function addToTabList(list){
 
   $('#tabs').append(text + "</ul>");
 }
-function addToTabList(list){
+function addToHistoryTab(list){
   $('#history').append("Number of Tabs Open: " + list.length);
   var text = "<ul type='circle'>";
 
