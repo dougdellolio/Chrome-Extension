@@ -33,13 +33,7 @@ function addToTabList(list){
   for (i = 0; i < list.length; i++) { 
       text += "<li>" + list[i].url + "</li>";
   }
-function addtoHistoryList(list){
-  $('#history').append("Number of Tabs Open: " + list.length);
-  var text = "<ul type='circle'>";
 
-  for (i = 0; i < list.length; i++) { 
-      text += "<li>" + list[i].url + "</li>";
-  }
   chrome.storage.sync.set({ "data" : text }, function() {
       if (chrome.runtime.error) {
         console.log("Runtime error.");
