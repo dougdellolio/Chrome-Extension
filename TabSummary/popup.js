@@ -42,19 +42,6 @@ function addToTabList(list){
 
   $('#tabs').append(text + "</ul>");
 }
-function addToHistoryTab(list){
-  $('#history').append("Title: " + list[i].title);
-  var text = "<ul type='circle'>";
-
-  for (i = 0; i < list.length; i++) { 
-      text += "<li>" + list[i].url + "</li>";
-  }
-
-  chrome.storage.sync.set({ "data" : text }, function() {
-      if (chrome.runtime.error) {
-        console.log("Runtime error.");
-      }
-  });
 
   $('#tabs').append(text + "</ul>");
 }
@@ -77,7 +64,12 @@ function addToHistory(text) {
     var array = data.list;
     array.unshift(text);
     console.log(array);
+  $('#history').append("Title: " + list[i].title);
+  var text = "<ul type='circle'>";
 
+  for (i = 0; i < list.length; i++) { 
+      text += "<li>" + list[i].url + "</li>";
+  }
      chrome.storage.sync.set({list:array}, function() {
          console.log("added to list");
      });
