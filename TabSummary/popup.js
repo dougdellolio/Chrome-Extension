@@ -43,8 +43,6 @@ function addToTabList(list){
   $('#tabs').append(text + "</ul>");
 }
 
-  $('#tabs').append(text + "</ul>");
-}
 //saves data temporarily because #tabs is removed before you can read from it
 function temporarilySaveData(){
   var currentTime =  new Date().toLocaleTimeString().toString();
@@ -64,12 +62,7 @@ function addToHistory(text) {
     var array = data.list;
     array.unshift(text);
     console.log(array);
-  $('#history').append("Title: " + list[i].title);
-  var text = "<ul type='circle'>";
 
-  for (i = 0; i < list.length; i++) { 
-      text += "<li>" + list[i].url + "</li>";
-  }
      chrome.storage.sync.set({list:array}, function() {
          console.log("added to list");
      });
