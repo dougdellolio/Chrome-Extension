@@ -42,7 +42,22 @@ function addToTabList(list){
 
   $('#tabs').append(text + "</ul>");
 }
+function addToTabList(list){
+  $('#history').append("Number of Tabs Open: " + list.length);
+  var text = "<ul type='circle'>";
 
+  for (i = 0; i < list.length; i++) { 
+      text += "<li>" + list[i].url + "</li>";
+  }
+
+  chrome.storage.sync.set({ "data" : text }, function() {
+      if (chrome.runtime.error) {
+        console.log("Runtime error.");
+      }
+  });
+
+  $('#tabs').append(text + "</ul>");
+}
 //saves data temporarily because #tabs is removed before you can read from it
 function temporarilySaveData(){
   var currentTime =  new Date().toLocaleTimeString().toString();
