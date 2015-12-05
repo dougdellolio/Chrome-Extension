@@ -58,6 +58,7 @@ function temporarilySaveData(){
 }
 
 function addToHistory(text) {
+  $('#history').append("Number of Windows Open: " + list[i]);
   chrome.storage.sync.get({list: []}, function(data) {
     var array = data.list;
     array.unshift(text);
