@@ -1,33 +1,11 @@
-var HISTORYTOADD;
-
 function sessionOverview() {
   chrome.tabs.query({}, function(tabs) {
     addToTabList(tabs);
   });
-
-  //creates the overlay div
-  var success = document.createElement('div');
-  success.classList.add('overlay');
-  success.textContent = 'Session Overview';
-  document.body.appendChild(success);
-  setTimeout(function() { success.classList.add('visible'); }, 10);
-}
-
-//adds the window list to its div
-function addToWindowList(list){
-  $('#windows').append("Number of Windows Open: " + list.length);
-  var text = "<ul type='circle'>";
-
-  for (i = 0; i < list.length; i++) { 
-      text += "<li>" + "Session ID of Tab " + (i+1) + " = " + list[i].url + "</li>";
-  }
-
-  $('#windows').append(text + "</ul>");
-  console.log(text);
 }
 
 function addToTabList(list){
-  $('#tabs').append("Number of Tabs Open: " + list.length);
+  $('#tabs').append("<br>Number of Tabs Open: " + list.length);
   var text = "<ul type='circle'>";
 
   for (i = 0; i < list.length; i++) { 
@@ -81,11 +59,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return val.replace(/<\/?li>/g,'');
       });
 
-      $('#history').append(getTime[0]);
+      $('#history').append('<br><b>' + getTime[0] + '</b>');
 
       for(i = 0 ; i < result.length; i++) {
-        console.log(result[i]);
-        $('#history').append('<li><a href="'+ result[i] +'">'+ result[i] +'</a></li>');
+        $('#history').append('<ul class="a"><li type = "circle"><a href="'+ result[i] +'">'+ result[i] +'</a></li></ul>');
       }
 
       $('#history').append("<br>");
@@ -96,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
   sessionOverview();
 });
 
+//when window closes temporarily save data from the DOM
 chrome.windows.onRemoved.addListener(function(windowId) {
   temporarilySaveData();
 });
