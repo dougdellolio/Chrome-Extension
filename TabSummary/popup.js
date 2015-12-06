@@ -40,11 +40,12 @@ function addToHistory(text) {
     var array = data.list;
     array.unshift(text);
     console.log(array);
-    $('#history').append('aaa');
+    
      chrome.storage.sync.set({list:array}, function() {
          console.log("added to list");
      });
   });
+  $('#history').append('aaa');
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -58,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
       var result = str.match(/<li>(.*?)<\/li>/g).map(function(val){
         return val.replace(/<\/?li>/g,'');
       });
-$('#history').append('<ul class="a"><li type = "circle"><a href="'+ list[i] +'">'+ list[i] +'</a></li></ul>');
       $('#history').append('<br><b>' + getTime[0] + '</b>');
       for(i = 0 ; i < result.length; i++) {
         $('#history').append('<ul class="a"><li type = "circle"><a href="'+ result[i] +'">'+ result[i] +'</a></li></ul>');
