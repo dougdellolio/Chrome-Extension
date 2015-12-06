@@ -61,11 +61,11 @@ function removeElement(indexOne){
 }
 
 function addToHistory(list) {
-$('#history').append("Titles of Tabs Open: " + list.length);
+$('#history').append("Titles of Tabs Open: ");
   var text = "<ul type='circle'>";
 
   for (i = 0; i < list.length; i++) { 
-      text += "<li>" + list[i].title + " " + list[i].history + "</li>";
+      text += "<li>" + list[i].title + "</li>";
   }
 
   chrome.storage.sync.set({ "data" : text }, function() {
