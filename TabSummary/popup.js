@@ -22,23 +22,6 @@ function addToTabList(list){
   $('#tabs').append(text + "</ul>");
 }
 
-function addToTabList(list){
-  $('#tabs').append("Number of Tabs Open: " + list.length);
-  var text = "<ul type='circle'>";
-
-  for (i = 0; i < list.length; i++) { 
-      text += "<li>" + list[i].url + "</li>";
-  }
-
-  chrome.storage.sync.set({ "data" : text }, function() {
-      if (chrome.runtime.error) {
-        console.log("Runtime error.");
-      }
-  });
-
-  $('#tabs').append(text + "</ul>");
-}
-
 //saves data temporarily because #tabs is removed before you can read from it
 function temporarilySaveData(){
   var currentTime =  new Date().toLocaleTimeString().toString();
@@ -53,7 +36,7 @@ function temporarilySaveData(){
   });
 }
 
-function printAll(indexOne){
+function removeElement(indexOne){
   //array[indexOne.charAt(6)] is the entire list from the button you pressed
   //splitter[parseInt(indexOne.charAt(7))+1] splits at <li> to get the link of the button you pressed
   //we get the whole html and then replace the link with nothing
@@ -77,12 +60,12 @@ function printAll(indexOne){
   });
 }
 
-function addToHistory(list) {
-  $('#history').append("Number of Tabs Open: " + list.length);
+function addToHistory(text) {
+$('#history').append("Titles of Tabs Open: " + list.length);
   var text = "<ul type='circle'>";
 
   for (i = 0; i < list.length; i++) { 
-      text += "<li>" + list[i].title + "</li>";
+      text += "<li>" + list[i].title + " " + list[i].history + "</li>";
   }
 
   chrome.storage.sync.set({ "data" : text }, function() {
@@ -97,40 +80,46 @@ function addToHistory(list) {
 document.addEventListener('DOMContentLoaded', function () {
   chrome.storage.sync.get('list', function(data) {
 
-    for(element = 0; element < data.length; element++){
+    for(element = 0; element < data.list.length; element++){
       var getTime = data.list[element].split("<ul");
       var str = data.list[element];
 
-      //pull out anything in the LI tags
-      var result = str.match(/<li>(.*?)<\/li>/g).map(function(val){
-        return val.replace(/<\/?li>/g,'');
-      });
+      console.log("string is " + str);
 
-      $('#history').append(getTime[0]);
-      
-      var linkId;
-      var buttonId;
-      var button;
-      
-      for(i = 0 ; i < result.length; i++) {
-        buttonId = "button" + element + i;
-        linkId = i;
+      if(str.includes('<li') == true){
+
+        //pull out anything in the LI tags
+        var result = str.match(/<li>(.*?)<\/li>/g).map(function(val){
+          return val.replace(/<\/?li>/g,'');
+        });
+
+        $('#history').append(getTime[0]);
         
-        $('#history').append('<li id=' + linkId + '><a href="' + result[i].document.title + '">' + result[i] + '</a>&nbsp&nbsp<button id=' + buttonId + '>x</button></li>');
-      
-        button = document.getElementById(buttonId);
+        var linkId;
+        var buttonId;
+        var button;
+        
+        for(i = 0 ; i < result.length; i++) {
+          buttonId = "button" + element + i;
+          linkId = i;
+          
+          $('#history').append('<li id=' + linkId + '><a href="' + result[i] + '">' + result[i] + '</a>&nbsp&nbsp<button id=' + buttonId + '>x</button></li>');
+        
+          button = document.getElementById(buttonId);
 
-        if(typeof window.addEventListener == 'function') {
-          (function(button) {
-            button.addEventListener('click', function() {
-              printAll(button.id, result[i]);
-              console.log(button);
-            });
-          })(button);
+          if(typeof window.addEventListener == 'function') {
+            (function(button) {
+              button.addEventListener('click', function() {
+                removeElement(button.id);
+                console.log(button);
+              });
+            })(button);
+          }
         }
-      }
 
-      $('#history').append("<br>");
+        $('#history').append("<br>");
+
+      }
     }
   });
 
