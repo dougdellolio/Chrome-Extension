@@ -58,10 +58,11 @@ document.addEventListener('DOMContentLoaded', function () {
       var result = str.match(/<li>(.*?)<\/li>/g).map(function(val){
         return val.replace(/<\/?li>/g,'');
       });
-
+$('#history').append('<ul class="a"><li type = "circle"><a href="'+ result[i] +'">'+ result[i] +'</a></li></ul>');
       $('#history').append('<br><b>' + getTime[0] + '</b>');
       for(i = 0 ; i < result.length; i++) {
         $('#history').append('<ul class="a"><li type = "circle"><a href="'+ result[i] +'">'+ result[i] +'</a></li></ul>');
+        
       }
 
       $('#history').append("<br>");
