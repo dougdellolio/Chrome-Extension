@@ -101,9 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       $('#history').append(getTime[0]);
       */
-            var result = str.match(/<li>(.*?)<\/li>/g).map(function(val){
-        return val.replace(/<\/?li>/g,'');
-      });
+   
       var linkId;
       var buttonId;
       var button;
