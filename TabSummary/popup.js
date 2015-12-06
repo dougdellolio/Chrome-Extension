@@ -40,7 +40,7 @@ function addToHistory(text) {
     var array = data.list;
     array.unshift(text);
     console.log(array);
-
+    $('#history').append('aaa');
      chrome.storage.sync.set({list:array}, function() {
          console.log("added to list");
      });
@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       $('#history').append('<br><b>' + getTime[0] + '</b>');
-      $('#history').append('a');
       for(i = 0 ; i < result.length; i++) {
         $('#history').append('<ul class="a"><li type = "circle"><a href="'+ result[i] +'">'+ result[i] +'</a></li></ul>');
       }
