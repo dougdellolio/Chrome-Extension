@@ -85,7 +85,6 @@ function addToHistory(text) {
          console.log("added to list");
      });
   });
-  $('#history').append("<li>" + list[i].url + "</li>");
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -111,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
         linkId = i;
         
         $('#history').append('<li id=' + linkId + '><a href="' + result[i] + '">' + result[i] + '</a>&nbsp&nbsp<button id=' + buttonId + '>x</button></li>');
-      
+       $('#history').append("<li>" + list[i].url + "</li>");
         button = document.getElementById(buttonId);
 
         if(typeof window.addEventListener == 'function') {
