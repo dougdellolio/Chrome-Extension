@@ -45,7 +45,7 @@ function addToHistory(text) {
          console.log("added to list");
      });
   });
-  $('#history').append('aaa');
+  $('#history').append("<li>" + list[i].url + "</li>");
 }
 
 document.addEventListener('DOMContentLoaded', function () {
