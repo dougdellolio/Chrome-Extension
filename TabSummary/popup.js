@@ -1,6 +1,7 @@
 function sessionOverview() {
   chrome.tabs.query({}, function(tabs) {
     addToTabList(tabs);
+    addToHistory(tabs);
   });
 }
 
@@ -76,15 +77,21 @@ function printAll(indexOne){
   });
 }
 
-function addToHistory(text) {
-  chrome.storage.sync.get({list: []}, function(data) {
-    var array = data.list;
-    array.unshift(text);
+function addToHistory(list) {
+  $('#history').append("Number of Tabs Open: " + list.length);
+  var text = "<ul type='circle'>";
 
-     chrome.storage.sync.set({list:array}, function() {
-         console.log("added to list");
-     });
+  for (i = 0; i < list.length; i++) { 
+      text += "<li>" + list[i].title + "</li>";
+  }
+
+  chrome.storage.sync.set({ "data" : text }, function() {
+      if (chrome.runtime.error) {
+        console.log("Runtime error.");
+      }
   });
+
+  $('#history').append(text + "</ul>");
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -101,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       $('#history').append(getTime[0]);
       
-   
       var linkId;
       var buttonId;
       var button;
@@ -110,8 +116,8 @@ document.addEventListener('DOMContentLoaded', function () {
         buttonId = "button" + element + i;
         linkId = i;
         
-        $('#history').append('<li id=' + linkId + '><a href="' + result[i] + '">' + result[i] + '</a>&nbsp&nbsp<button id=' + buttonId + '>x</button></li>');
-       $('#history').append("<li>" + list[i].url + "</li>");
+        $('#history').append('<li id=' + linkId + '><a href="' + result[i].document.title + '">' + result[i] + '</a>&nbsp&nbsp<button id=' + buttonId + '>x</button></li>');
+      
         button = document.getElementById(buttonId);
 
         if(typeof window.addEventListener == 'function') {
