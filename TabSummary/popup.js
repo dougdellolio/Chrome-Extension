@@ -60,7 +60,7 @@ function removeElement(indexOne){
   });
 }
 
-function addToHistory(text) {
+function addToHistory(list) {
 $('#history').append("Titles of Tabs Open: " + list.length);
   var text = "<ul type='circle'>";
 
