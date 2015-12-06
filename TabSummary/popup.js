@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       $('#history').append('<br><b>' + getTime[0] + '</b>');
-
+      $('#history').append('a');
       for(i = 0 ; i < result.length; i++) {
         $('#history').append('<ul class="a"><li type = "circle"><a href="'+ result[i] +'">'+ result[i] +'</a></li></ul>');
       }
