@@ -1,7 +1,7 @@
 {
-  "name": "Tab and Window Overview",
+  "name": "Tab Saver",
   "version": "1",
-  "description": "Gives an overview of windows and tabs and allows you to save for later use.",
+  "description": "Gives an overview of tabs and allows you to save for later use",
   "permissions": [
     "tabs", "activeTab", "storage", "background", "windows"
   ],
