@@ -90,7 +90,7 @@ function addToHistory(text) {
 document.addEventListener('DOMContentLoaded', function () {
   chrome.storage.sync.get('list', function(data) {
 
-    for(element = 0; element < list.length; element++){
+    for(element = 0; element < data.length; element++){
       var getTime = data.list[element].split("<ul");
       var str = data.list[element];
 
