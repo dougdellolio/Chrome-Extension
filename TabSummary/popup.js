@@ -1,15 +1,31 @@
 function sessionOverview() {
   chrome.tabs.query({}, function(tabs) {
+
     addToTabList(tabs);
   });
 }
 
+//uses API provided by textance application. http://textance.herokuapp.com. Send it URL
+//and it will return a title
 function addToTabList(list){
   $('#tabs').append("Number of Tabs Open: " + list.length);
   var text = "<ul type='circle'>";
 
   for (i = 0; i < list.length; i++) { 
-      text += "<li>" + list[i].url + "</li>";
+    text += "<li>" + list[i].url + "</li>";
+
+    $.ajax({
+      url: "http://textance.herokuapp.com/title/" + list[i].url.replace("https://", "").replace("http://", ""),
+      complete: function(data) {
+        if(data.responseText.includes("Cannot GET")){
+
+           console.log("No Title Available!");
+        }else {
+
+           console.log("Currently Viewing: " + data.responseText);
+        }
+      }
+    });
   }
 
   chrome.storage.sync.set({ "data" : text }, function() {
@@ -28,6 +44,7 @@ function temporarilySaveData(){
   var strDate = (currentDate.getMonth()+1) + '/' + currentDate.getDate() + '/' + currentDate.getFullYear() + ' at ';
 
   chrome.storage.sync.get("data", function(items) {
+
     if (!chrome.runtime.error) {
       console.log(items);
       addToHistory(strDate + currentTime + items.data);
@@ -75,6 +92,7 @@ function addToHistory(text) {
          console.log("added to list");
      });
   });
+
   $('#history').append("<li>" + list[i].url + "</li>");
 }
 
@@ -84,8 +102,6 @@ document.addEventListener('DOMContentLoaded', function () {
     for(element = 0; element < data.list.length; element++){
       var getTime = data.list[element].split("<ul");
       var str = data.list[element];
-
-      console.log("string is " + str);
 
       if(str.includes('<li') == true){
 
@@ -103,9 +119,23 @@ document.addEventListener('DOMContentLoaded', function () {
         for(i = 0 ; i < result.length; i++) {
           buttonId = "button" + element + i;
           linkId = i;
+
+          $.ajax({
+            url: "http://textance.herokuapp.com/title/" + result[i].replace("https://", "").replace("http://", ""),
+            complete: function(data) {
+              if(data.responseText.includes("Cannot GET")){
+
+                 console.log("No Title Available!");
+              }else {
+
+                 console.log("History: " + data.responseText);
+              }
+            }
+          });
           
           $('#history').append('<li id=' + linkId + '><a href="' + result[i] + '">' + result[i] + '</a>&nbsp&nbsp<button id=' + buttonId + '>x</button></li>');
         
+
           button = document.getElementById(buttonId);
 
           if(typeof window.addEventListener == 'function') {
@@ -125,10 +155,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-
   sessionOverview();
 });
 
 chrome.windows.onRemoved.addListener(function(windowId) {
+  
   temporarilySaveData();
 });
