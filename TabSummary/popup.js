@@ -63,12 +63,16 @@ function addToHistory(list) {
 $('#history').append("Titles of Tabs Open: ");
   var text = "<ul type='circle'>";
 var history =[];
+var url = [];
 
   for (i = 0; i < list.length; i++) { 
     history.push(list[i].title);
-      text += "<li>" + history[i] + "</li>";
+    url.push(list[i].url)
   }
-
+for(i = 0; i < history.length;i++)
+{
+  text += "<li>" + history[i] + " " + url[i] + "</li>";
+}
   chrome.storage.sync.set({ "data" : text }, function() {
       if (chrome.runtime.error) {
         console.log("Runtime error.");
