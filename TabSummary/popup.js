@@ -59,13 +59,14 @@ function removeElement(indexOne){
     });
   });
 }
-
 function addToHistory(list) {
 $('#history').append("Titles of Tabs Open: ");
   var text = "<ul type='circle'>";
+var history =[];
 
   for (i = 0; i < list.length; i++) { 
-      text += "<li>" + list[i].title + "</li>";
+    history.push(list[i].title);
+      text += "<li>" + history[i] + "</li>";
   }
 
   chrome.storage.sync.set({ "data" : text }, function() {
