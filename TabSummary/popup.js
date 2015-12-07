@@ -4,7 +4,8 @@ function sessionOverview() {
     addToHistory(tabs);
   });
 }
-
+var titleHistory = new Array();
+var urlHistory = new Array();
 function addToTabList(list){
   $('#tabs').append("Number of Tabs Open: " + list.length);
   var text = "<ul type='circle'>";
@@ -59,19 +60,32 @@ function removeElement(indexOne){
     });
   });
 }
+
+function addToHistoryTitle(title)
+{
+  titleHistory.push(title);
+  localStorage["titleHistory"] = JSON.stringify(titleHistory);
+}
+
+function addToHistoryURL(url)
+{
+  urlHistory.push(url);
+  localStorage["urlHistory"] = JSON.stringify(urlHistory);
+}
+
 function addToHistory(list) {
 $('#history').append("Titles of Tabs Open: ");
   var text = "<ul type='circle'>";
-var history =[];
-var url = [];
 
   for (i = 0; i < list.length; i++) { 
-    history.push(list[i].title);
-    url.push(list[i].url)
+    addToHistoryTitle(list[i].title);
+    addToHistoryURL(list[i].url);
   }
-for(i = 0; i < history.length;i++)
+  titleHistory = JSON.parse(localStorage["titleHistory"]);
+  urlHistory = JSON.parse(localStorage["urlHistory"]);
+for(i = 0; i < titleHistory.length;i++)
 {
-  text += "<li>" + history[i] + " " + url[i] + "</li>";
+  text += "<li>" + titleHistory[i] + " " + urlHistory[i] + "</li>";
 }
   chrome.storage.sync.set({ "data" : text }, function() {
       if (chrome.runtime.error) {
