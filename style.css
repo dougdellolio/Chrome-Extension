@@ -12,11 +12,11 @@ p {
 }
 
 a:hover {
-    color: #2FB8F2;
+    color: #f3961c;
 }
 
 a {
-    color: #CBB18B;
+    color: black;
     text-decoration: none;
 }
 
@@ -40,6 +40,10 @@ a {
 
 #inside_div {
 	margin-left: 30px;
+}
+
+#header {
+	font-color: #f3961c;
 }
 
 .subheader_div img {
