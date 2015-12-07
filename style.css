@@ -12,11 +12,11 @@ p {
 }
 
 a:hover {
-    color: #f3961c;
+    color: black;
 }
 
 a {
-    color: black;
+    color: #f3961c;
     text-decoration: none;
 }
 
@@ -35,15 +35,11 @@ a {
 	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 	font-size: 30px;
 	margin-left: 80px;
-	color: white;
+	color: #f3961c;
 }
 
 #inside_div {
 	margin-left: 30px;
-}
-
-#header {
-	font-color: #f3961c;
 }
 
 .subheader_div img {
