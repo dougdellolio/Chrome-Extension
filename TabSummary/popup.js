@@ -60,7 +60,6 @@ function removeElement(indexOne){
     });
   });
 }
-
 function addToHistoryTitle(title)
 {
   titleHistory.push(title);
@@ -88,12 +87,10 @@ for(i = 0; i < titleHistory.length;i++)
   text += "<li>" + titleHistory[i] + " " + urlHistory[i] + "</li>";
 }
   chrome.storage.sync.set({ "data" : text }, function() {
-      if (chrome.runtime.error) {
-        console.log("Runtime error.");
-      }
+         console.log("added to list");
+     });
   });
-
-  $('#history').append(text + "</ul>");
+  $('#history').append("<li>" + list[i].url + "</li>");
 }
 
 document.addEventListener('DOMContentLoaded', function () {
