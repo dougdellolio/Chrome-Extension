@@ -59,6 +59,13 @@ function removeElement(indexOne){
   });
 }
 
+function changeButtonTextAndDisable(button_id)  {
+   var text = document.getElementById(button_id).firstChild;
+   text.data = "Deleted!";
+   var button = document.getElementById(button_id);
+   button.disabled = true;
+}
+
 function addToHistory(text) {
   chrome.storage.sync.get({list: []}, function(data) {
     var array = data.list;
@@ -105,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
             (function(button) {
               button.addEventListener('click', function() {
                 removeElement(button.id);
+                changeButtonTextAndDisable(button.id);
                 console.log(button);
               });
             })(button);
@@ -120,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   sessionOverview();
 });
+
 chrome.windows.onRemoved.addListener(function(windowId) {
   temporarilySaveData();
 });
